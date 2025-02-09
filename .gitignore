@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+/frontend/node_modules
+/backend/venv
+__pycache__/
+*.pyc
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build
+/frontend/build
+/backend/build
+/dist
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# System
+.DS_Store
+Thumbs.db
+
+.config
+.env
+.DS_Store
+.htaccess
+.env
+dataset_governance.txt
+.venv/
+virt/
+*.log
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+static/
+@.config
+@.env
+venv/
+__pycache__
+.DS_Store
+frontend/node_modules
