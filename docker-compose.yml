@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=backend.settings
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-your-secret-key-here}
+      - CORS_ALLOWED_ORIGINS=http://localhost:3000
+      - CORS_ALLOW_CREDENTIALS=true
+    networks:
+      - app-network
+    command: python manage.py runserver 0.0.0.0:8000
+
+networks:
+  app-network:
+    driver: bridge 
